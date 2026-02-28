@@ -30,13 +30,22 @@ jobs:
 
       - name: Prepare build.gradle for Cloud Build
         run: |
-          # 确保 local.properties 存在
           echo "flutter.sdk=$FLUTTER_ROOT" > android/local.properties
           echo "flutter.versionCode=1" >> android/local.properties
           echo "flutter.versionName=1.0.0" >> android/local.properties
 
+      - name: Generate debug keystore for CI signing
+        run: |
+          mkdir -p $HOME/.android
+          keytool -genkeypair -v \
+            -keystore $HOME/.android/debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
+
       - name: Build APK
-        run: flutter build apk --release # 现在 build.gradle 支持在 CI 中自动回退签名
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
