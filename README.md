@@ -23,10 +23,12 @@ See [Comic Source](doc/comic_source.md)
 
 ## Thanks
 
-### Tags Translation
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=EhTagTranslation&repo=Database)](https://github.com/EhTagTranslation/Database)
+### particularly
 
 [Venera](https://github.com/venera-app/venera)
+
+### Tags Translation
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=EhTagTranslation&repo=Database)](https://github.com/EhTagTranslation/Database)
 
 ## Headless Mode
 See [Headless Doc](doc/headless_doc.md)
