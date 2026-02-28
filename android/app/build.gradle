@@ -76,8 +76,13 @@ android {
                 storeFile file(keystoreProperties['storeFile'])
                 storePassword keystoreProperties['storePassword']
             } else {
-                // Fallback to debug signing if key.properties is missing (e.g. in CI)
-                initWith(debug)
+                // Fallback to a generated debug keystore when key.properties is missing (e.g. in CI).
+                // The keystore is created by the CI workflow step before this build runs.
+                def debugKeystoreFile = new File(System.getProperty('user.home') + '/.android/debug.keystore')
+                storeFile debugKeystoreFile
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
             }
         }
     }
