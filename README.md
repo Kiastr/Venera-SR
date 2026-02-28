@@ -23,9 +23,10 @@ See [Comic Source](doc/comic_source.md)
 
 ## Thanks
 
-### particularly
+### particularly thanks
 
-[Venera](https://github.com/venera-app/venera)Modify and add functions based on the project
+Modify and add functions based on
+[Venera](https://github.com/venera-app/venera)
 
 ### Tags Translation
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=EhTagTranslation&repo=Database)](https://github.com/EhTagTranslation/Database)
