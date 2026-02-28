@@ -25,7 +25,7 @@ See [Comic Source](doc/comic_source.md)
 
 ### particularly
 
-[Venera](https://github.com/venera-app/venera)
+[Venera](https://github.com/venera-app/venera)Modify and add functions based on the project
 
 ### Tags Translation
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=EhTagTranslation&repo=Database)](https://github.com/EhTagTranslation/Database)
@@ -34,3 +34,16 @@ See [Comic Source](doc/comic_source.md)
 See [Headless Doc](doc/headless_doc.md)
 
 The Chinese translation of the manga tags is from this project.
+
+
+#免责声明
+
+不得利用本项目进行任何非法活动。 不得干扰任何公司或个人的正常运营或生活和著作权。 不得传播恶意软件或病毒。 此外，为降低法律风险
+
+🚫禁止在官方平台（如b站）及官方账号区域（如b站微博评论区）宣传本项目
+
+🚫禁止在微信公众号平台宣传本项目
+
+🚫禁止利用本项目牟利，本项目无任何盈利行为，第三方盈利与本项目无关
+
+代码均来自开源项目或AI
