@@ -77,7 +77,7 @@ android {
                 storePassword keystoreProperties['storePassword']
             } else {
                 // Fallback to debug signing if key.properties is missing (e.g. in CI)
-                signingConfig signingConfigs.debug
+                initWith(debug)
             }
         }
     }
