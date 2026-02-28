@@ -1,13 +1,7 @@
 # venera
-[![flutter](https://img.shields.io/badge/flutter-3.38.5-blue)](https://flutter.dev/)
-[![License](https://img.shields.io/github/license/venera-app/venera)](https://github.com/venera-app/venera/blob/master/LICENSE)
-[![stars](https://img.shields.io/github/stars/venera-app/venera?style=flat)](https://github.com/venera-app/venera/stargazers)
 
-[![Download](https://img.shields.io/github/v/release/venera-app/venera)](https://github.com/venera-app/venera/releases)
-[![AUR Version](https://img.shields.io/aur/version/venera-bin)](https://aur.archlinux.org/packages/venera-bin)
-[![F-Droid Version](https://img.shields.io/f-droid/v/com.github.wgh136.venera)](https://f-droid.org/packages/com.github.wgh136.venera/)
-
-A comic reader that support reading local and network comics.
+A comic reader that support different resource source can use anime4k to SR./
+一个支持不同漫画源并且可以用anime4k进行本地超分的改版漫画阅读器
 
 ## Features
 - Read local comics
