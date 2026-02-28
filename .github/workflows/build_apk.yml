@@ -51,4 +51,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
-          path: build/app/outputs/flutter-apk/venera-*.apk
+          path: build/app/outputs/flutter-apk/*.apk
+
