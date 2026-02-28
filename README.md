@@ -1,6 +1,7 @@
 # Venera-SSR
 
-A revision comic reader that support different resource source can use anime4k to SR./
+A revision comic reader that support different resource source can use anime4k to SR.
+
 一个支持不同漫画源并且可以用anime4k进行本地超分的改版漫画阅读器
 
 ## Features
