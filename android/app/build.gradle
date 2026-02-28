@@ -1,0 +1,147 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+ext.abiCodes = ["armeabi-v7a": 1, "arm64-v8a": 2, "x86_64": 3]
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) {
+    flutterVersionCode = "1"
+}
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) {
+    flutterVersionName = "1.0"
+}
+
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+def hasKeystore = keystorePropertiesFile.exists()
+if (hasKeystore) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace = "com.github.wgh136.venera"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion "28.0.13004108"
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    splits{
+        abi {
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            enable true
+            universalApk true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions{
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
+    signingConfigs {
+        debug {
+            if (hasKeystore) {
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+        release {
+            if (hasKeystore) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            } else {
+                // Fallback to debug signing if key.properties is missing (e.g. in CI)
+                signingConfig signingConfigs.debug
+            }
+        }
+    }
+
+    defaultConfig {
+        applicationId = "com.github.wgh136.venera"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86_64"
+            }
+            signingConfig signingConfigs.release
+        }
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86_64"
+            }
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def abi = output.getFilter(com.android.build.OutputFile.ABI)
+            if (variant.buildType.name == "release") {
+                if (abi != null) {
+                    outputFileName = "venera-${variant.versionName}-${abi}.apk"
+                    def abiVersionCode = project.ext.abiCodes.get(abi)
+                    if (abiVersionCode != null) {
+                        versionCodeOverride = variant.versionCode * 10 + abiVersionCode
+                    }
+                } else {
+                    outputFileName = "venera-${variant.versionName}.apk"
+                    versionCodeOverride = variant.versionCode * 10
+                }
+            } else if (variant.buildType.name == "debug") {
+                versionCodeOverride = variant.versionCode * 10 + 4
+            }
+        }
+    }
+
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation "androidx.activity:activity-ktx:1.10.1"
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+}
