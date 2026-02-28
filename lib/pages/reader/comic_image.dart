@@ -1,7 +1,5 @@
 part of 'reader.dart';
 
-import 'package:venera/utils/anime4k/anime4k_service.dart';
-
 class ComicImage extends StatefulWidget {
   /// Modified from flutter Image
   ComicImage({
@@ -180,10 +178,13 @@ class _ComicImageState extends State<ComicImage> with WidgetsBindingObserver {
       // 从 ReaderImageProvider 获取图像数据
       if (widget.image is ReaderImageProvider) {
         final provider = widget.image as ReaderImageProvider;
+        final chunkController = StreamController<ImageChunkEvent>();
+        chunkController.stream.listen(null, onError: (_) {});
         final imageBytes = await provider.load(
-          (event) {},
+          chunkController,
           () {},
         );
+        unawaited(chunkController.close());
 
         final result = await Anime4KService.instance.processImage(
           imageBytes: imageBytes,
