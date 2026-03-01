@@ -13,6 +13,14 @@ A revision comic reader that support different resource source can use anime4k t
 - View comments, tags, and other information of comics if the source supports
 - Login to comment, rate, and other operations if the source supports
 
+## 界面展示 (Screenshots)
+
+| 漫画源 (Comic Source) | 设置菜单 (Settings) |
+|:---:|:---:|
+| ![Comic Source](screenshots/comic_source.jpg) | ![Settings](screenshots/settings.jpg) |
+| **Anime4K 设置** | **阅读界面 (Reader)** |
+| ![Anime4K Settings](screenshots/anime4k_settings.jpg) | ![Reader View](screenshots/reader_view.jpg) |
+
 ## Build from source
 1. Clone the repository
 2. Install flutter, see [flutter.dev](https://flutter.dev/docs/get-started/install)
