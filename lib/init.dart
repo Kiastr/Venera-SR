@@ -13,7 +13,6 @@ import 'package:venera/foundation/log.dart';
 import 'package:venera/network/cookie_jar.dart';
 import 'package:venera/pages/comic_source_page.dart';
 import 'package:venera/pages/follow_updates_page.dart';
-import 'package:venera/pages/settings/settings_page.dart';
 import 'package:venera/utils/app_links.dart';
 import 'package:venera/utils/handle_text_share.dart';
 import 'package:venera/utils/opencc.dart';
@@ -103,21 +102,7 @@ void _checkOldConfigs() {
   }
 }
 
-Future<void> _checkAppUpdates() async {
-  var lastCheck = appdata.implicitData['lastCheckUpdate'] ?? 0;
-  var now = DateTime.now().millisecondsSinceEpoch;
-  if (now - lastCheck < 24 * 60 * 60 * 1000) {
-    return;
-  }
-  appdata.implicitData['lastCheckUpdate'] = now;
-  appdata.writeImplicitData();
-  ComicSourcePage.checkComicSourceUpdate();
-  if (appdata.settings['checkUpdateOnStart']) {
-    await checkUpdateUi(false, true);
-  }
-}
-
 void checkUpdates() {
-  _checkAppUpdates();
+  ComicSourcePage.checkComicSourceUpdate();
   FollowUpdatesService.initChecker();
 }
