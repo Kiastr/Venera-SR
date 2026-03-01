@@ -227,6 +227,10 @@ class Settings with ChangeNotifier {
     'autoCloseFavoritePanel': false,
     'showChapterComments': true, // show chapter comments in reader
     'showChapterCommentsAtEnd': false, // show chapter comments at end of chapter
+    'enableAnime4K': false, // enable Anime4K super-resolution
+    'anime4KScaleFactor': 2.0, // upscale factor (1.0 - 4.0)
+    'anime4KPushStrength': 0.31, // line refinement strength (0.0 - 1.0)
+    'anime4KPushGradStrength': 1.0, // gradient refinement strength (0.0 - 1.0)
   };
 
   operator [](String key) {
