@@ -18,6 +18,7 @@ import 'package:venera/utils/data.dart';
 import 'package:venera/utils/data_sync.dart';
 import 'package:venera/utils/io.dart';
 import 'package:venera/utils/translations.dart';
+import 'package:venera/utils/anime4k/anime4k_service.dart';
 import 'package:yaml/yaml.dart';
 
 part 'reader.dart';
@@ -294,6 +295,6 @@ class _SettingsDetailPage extends StatelessWidget {
       7 => const Anime4KSettings(),
       8 => const DebugPage(),
       _ => throw UnimplementedError()
-    };};
+    };
   }
 }
